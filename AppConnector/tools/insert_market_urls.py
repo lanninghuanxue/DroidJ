@@ -49,9 +49,9 @@ if __name__ == '__main__':
 			url = inData[1]
 
 			result = initItems.find({'market': market, 'url': url})
-			print result
-			if result != None:
-				continue
+			#print result
+			#if result != None:
+			#	continue
 
 			initItems.insert({'market': market, 'url': url})
 			print 'Data Inserted %s : %s' % (market, url)

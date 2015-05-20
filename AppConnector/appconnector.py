@@ -6,6 +6,7 @@ def load_markets():
 	markets = {}
 	markets['anzhi'] = 'AnzhiSpider'
 	markets['gfan'] = 'GfanSpider'
+	return markets
 
 def main():
 	markets = load_markets()
