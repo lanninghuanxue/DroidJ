@@ -9,7 +9,7 @@ from pymongo import MongoClient
 import downloader.downloader as dler
 import connector.connector as ctor
 
-workerApp = Celery('worker', backend= 'amqp', broker= 'amqp://mqs/')
+workerApp = Celery('tasks', backend= 'amqp', broker= 'amqp://mqs/')
 
 workerDb = MongoClient(host= 'dbs')
 workerFs = gridfs.GridFS(workerDb.appconnector)
@@ -67,6 +67,6 @@ def run_connector(item):
 
 	for oid in itemList:
 		workerRedis.set('cache:%s' % str(oid), 1)
-		
+
 	workerDb.appconnector.downitems.insert(itemList)
 	return True

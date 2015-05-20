@@ -1,7 +1,7 @@
 import sys
 sys.path.append('../..')
 
-import worker.worker as wker
+import worker.tasks as wker
 import time
 
 def run_op(markets, op, interval):

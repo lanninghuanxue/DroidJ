@@ -5,7 +5,7 @@ import redis
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 
-import worker.worker as wker
+import worker.tasks as wker
 
 def load_meta_into_redis(markets, redisCon, dbCon):
 	metaItems = dbCon.metaitems
