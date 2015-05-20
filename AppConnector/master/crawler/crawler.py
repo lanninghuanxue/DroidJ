@@ -23,11 +23,14 @@ def run_op(markets, op, interval):
 		counter = 0
 
 def run_listing(markets):
+	print 'listing'
 	run_op(markets, 'list', 60 * 10)
 
 def run_metaing(markets):
+	print 'metaing'
 	run_op(markets, 'meta', 60 * 10)
 
 def run_downing(markets):
+	print 'downing'
 	run_op(markets, 'down', 60 * 10)
 

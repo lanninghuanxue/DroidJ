@@ -26,14 +26,14 @@ class AnzhiSpider(BaseSpider):
 
 		if self.mode == 'list':
 			client = MongoClient(host = 'dbs')
-			db = client.meta_crawler
-			initItems = db.init_items
+			db = client.appconnector
+			initItems = db.inititems
 			for oneItem in initItems.find({'market': 'anzhi'}):
 				self.start_urls.append(oneItem['url'])
 		elif self.mode == 'meta':
 			client = MongoClient(host = 'dbs')
-			db = client.meta_crawler
-			listItems = db.list_items
+			db = client.appconnector
+			listItems = db.listitems
 			for oneItem in listItems.find({'market': 'anzhi'}):
 				self.start_urls.append(oneItem['url'])
 		elif self.mode == 'down':
@@ -68,9 +68,9 @@ class AnzhiSpider(BaseSpider):
 			if self.inited == False:
 				self.inited = True
 				client = MongoClient(host = 'dbs')
-				db = client.meta_crawler
-				downItems = db.down_items
-				metaItems = db.meta_items
+				db = client.appconnector
+				downItems = db.downitems
+				metaItems = db.metaitems
 				for oneItem in downItems.find({}, {'_id':0}):
 					for oneId in oneItem:
 						if oneItem[oneId] != 'anzhi':

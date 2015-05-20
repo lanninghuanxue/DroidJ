@@ -31,9 +31,9 @@ class StorePipeLine(object):
 	def initialize(self):
 		log.msg("StorePipeLine Opened!", log.DEBUG)
 		self.client = MongoClient(host = 'dbs')
-		self.db = self.client.meta_crawler
-		self.listItems = self.db.list_items
-		self.metaItems = self.db.meta_items
+		self.db = self.client.appconnector
+		self.listItems = self.db.listitems
+		self.metaItems = self.db.metaitems
 		self.rmCon = pika.BlockingConnection(pika.ConnectionParameters(host = 'mqs'))
 		self.rmChannel = self.rmCon.channel()
 		self.rmChannel.queue_declare(queue = 'ctod')
