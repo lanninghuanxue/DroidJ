@@ -1,6 +1,10 @@
+from __future__ import absolute_import
+
+from worker.worker import workerApp
+
 import subprocess
 import time
-from celery import Celery
+#from celery import Celery
 import redis
 from pymongo import MongoClient
 import gridfs
@@ -9,7 +13,7 @@ from bson.objectid import ObjectId
 import downloader.downloader as dler
 import connector.connector as ctor
 
-workerApp = Celery('tasks', backend= 'amqp', broker= 'amqp://mqs/')
+#workerApp = Celery('tasks', backend= 'amqp', broker= 'amqp://mqs/')
 
 workerDb = MongoClient(host= 'dbs')
 workerFs = gridfs.GridFS(workerDb.appconnector)
