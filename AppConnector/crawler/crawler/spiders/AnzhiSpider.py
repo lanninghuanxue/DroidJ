@@ -1,7 +1,7 @@
 from scrapy.spider import BaseSpider
 from scrapy.selector import Selector
 from scrapy import log
-from Crawler.items import ListItem, MetaItem, DownItem
+from crawler.items import ListItem, MetaItem, DownItem
 from pymongo import MongoClient
 from scrapy import log
 from scrapy.http import Request
