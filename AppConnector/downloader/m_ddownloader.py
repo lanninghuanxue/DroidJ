@@ -1,7 +1,7 @@
 import sys
-sys.path.append('../..')
+sys.path.append('..')
 
-import worker.tasks as wker
+import tasks as wker
 
 from multiprocessing import Queue, Lock
 

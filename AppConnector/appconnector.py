@@ -1,6 +1,6 @@
-import crawler.crawler as cler
-import connector.connector as ctor
-import downloader.downloader as dler
+import crawler.m_crawler as cler
+import connector.m_connector as ctor
+import downloader.m_downloader as dler
 
 def load_markets():
 	markets = {}

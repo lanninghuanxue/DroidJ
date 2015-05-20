@@ -1,11 +1,11 @@
 import sys
-sys.path.append('../..')
+sys.path.append('..')
 
 import redis
 from bson.objectid import ObjectId
 from pymongo import MongoClient
 
-import worker.tasks as wker
+import tasks as wker
 
 def load_meta_into_redis(markets, redisCon, dbCon):
 	metaItems = dbCon.metaitems

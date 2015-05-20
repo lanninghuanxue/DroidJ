@@ -7,7 +7,7 @@ from multiprocessing import Process, Queue, Lock
 from receiver import do_receive
 from preprocessor import do_preprocess
 from ddownloader import do_download
-from crawler.crawler import run_downing
+from crawler.m_crawler import run_downing
 
 def run_downloading(markets):
 	print 'downloading'

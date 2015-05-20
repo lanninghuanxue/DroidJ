@@ -6,8 +6,8 @@ from pymongo import MongoClient
 import gridfs
 from bson.objectid import ObjectId
 
-import downloader.downloader as dler
-import connector.connector as ctor
+import downloader.w_downloader as dler
+import connector.w_connector as ctor
 
 workerApp = Celery('tasks', backend= 'amqp://mqs/', broker= 'amqp://mqs/')
 
