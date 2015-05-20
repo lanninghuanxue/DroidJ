@@ -4,9 +4,9 @@ sys.path.append('..')
 import time
 
 from multiprocessing import Process, Queue, Lock
-from receiver import do_receive
-from preprocessor import do_preprocess
-from ddownloader import do_download
+from m_receiver import do_receive
+from m_preprocessor import do_preprocess
+from m_ddownloader import do_download
 from crawler.m_crawler import run_downing
 
 def run_downloading(markets):
