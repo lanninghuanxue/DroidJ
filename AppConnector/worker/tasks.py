@@ -2,9 +2,9 @@ import subprocess
 import time
 from celery import Celery
 import redis
+from pymongo import MongoClient
 import gridfs
 from bson.objectid import ObjectId
-from pymongo import MongoClient
 
 import downloader.downloader as dler
 import connector.connector as ctor
