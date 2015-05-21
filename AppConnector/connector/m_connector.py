@@ -19,7 +19,7 @@ def run_connecting(markets):
 	dbCon = MongoClient(host= 'dbs')
 
 	redisCon = redis.StrictRedis(host= 'rds', port= 6379, db= 0)
-	load_meta_into_redis(markets, dbCon, redisCon)
+	load_meta_into_redis(markets, redisCon, dbCon)
 
 	#iter
 	for item in redisCon.scan_iter(match= 'meta*'):
