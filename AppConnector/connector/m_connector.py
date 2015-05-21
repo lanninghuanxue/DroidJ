@@ -26,5 +26,5 @@ def run_connecting(markets):
 		if redisCon.exists('cache:%s' % str(item[2])) == True:
 			continue
 
-		wker.run_connecting.delay(item)
+		wker.run_connector.delay(item)
 
