@@ -32,12 +32,18 @@ def run_connecting(server, markets):
 
 		result[index] = wker.run_connector.delay(item)
 
-	while len(result) != 0:
+	counter = 0
+	while True:
 		time.sleep(60)
 
 		for index in result:
-			if result[index].ready() == True:
-				del result[index]
+			if result[index].ready() == False:
+				counter = counter + 1
+
+		if counter != 0:
+			counter = 0
+			continue
+				
 
 
 
