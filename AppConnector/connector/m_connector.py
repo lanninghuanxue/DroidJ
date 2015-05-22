@@ -14,7 +14,7 @@ def load_meta_into_redis(markets, redisCon, dbCon):
 
 	for market in markets:
 		for item in metaItems.find({'market': market}, {'title': 1}):
-			redisCon.set('meta:%s' % str(item['_id']), json.dumps((market, item['title'], str(item['_id'])))
+			redisCon.set('meta:%s' % str(item['_id']), json.dumps((market, item['title'], str(item['_id']))))
 
 def run_connecting(server, markets):
 	print 'connecting'
