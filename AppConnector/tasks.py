@@ -69,7 +69,6 @@ def run_downloader(oid, url):
 @workerApp.task
 def run_connector(item):
 	if workerRedis.exists('cache:%s' % str(item[2])) == True:
-		print 'In Cache'
 		return False
 
 	itemList = {}
@@ -81,13 +80,12 @@ def run_connector(item):
 
 		itemList[objItem[2]] = objItem[0]
 
+	print itemList
 	if len(itemList) == 1:
-		print 'No Item'
 		return False
 
 	for oid in itemList:
 		if workerRedis.exists('cache:%s' % str(oid)) == True:
-			print 'In Cache'
 			return False
 
 	for oid in itemList:
