@@ -40,9 +40,10 @@ def run_connecting(server, markets):
 			if result[index].ready() == False:
 				counter = counter + 1
 
-		if counter != 0:
-			counter = 0
-			continue
+		if counter == 0:
+			break
+
+		counter = 0
 				
 
 
