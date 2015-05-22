@@ -24,20 +24,21 @@ def run_connecting(server, markets):
 
 	#iter
 	result = {}
-	for item in redisCon.scan_iter(match= 'meta*'):
+	for index in redisCon.scan_iter(match= 'meta*'):
+		item = redisCon.get(index)
 		print item
 		if redisCon.exists('cache:%s' % str(item[2])) == True:
 			print 'In Cache'
 			continue
 
-		result[item[2]] = wker.run_connector.delay(item)
+		result[index] = wker.run_connector.delay(item)
 
 	while len(result) != 0:
 		time.sleep(60)
 
-		for oid in result:
-			if result[oid].ready() == True:
-				del result[oid]
+		for index in result:
+			if result[index].ready() == True:
+				del result[index]
 
 
 
