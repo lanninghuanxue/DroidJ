@@ -24,7 +24,7 @@ def main(mode, server):
 		dler.run_downloading(server, markets)
 
 if __name__ == '__main__':
-	opts, args = getopt.getopt(sys.argv[1:], 'M:d:r:m:')
+	opts, args = getopt.getopt(sys.argv[1:], 'ALMCDd:r:m:')
 
 	mode = {}
 	mode['RUN_LISTING'] = False
@@ -38,15 +38,14 @@ if __name__ == '__main__':
 	server['mqs'] = 'mqs'
 
 	for opt, arg in opts:
-		if opt in ('-M'):
-			if arg == 'a' or arg == 'l':
-				mode['RUN_LISTING'] = True
-			if arg == 'a' or arg == 'm':
-				mode['RUN_METAING'] = True
-			if arg == 'a' or arg == 'c':
-				mode['RUN_CONNECTING'] = True
-			if arg == 'a' or arg == 'd':
-				mode['RUN_DOWNLOADING'] = True
+		if opt in ('-A', '-L'):
+			mode['RUN_LISTING'] = True
+		if opt in ('-A', '-M'):
+			mode['RUN_METAING'] = True
+		if opt in ('-A', '-C'):
+			mode['RUN_CONNECTING'] = True
+		if opt in ('-A', '-D'):
+			mode['RUN_DOWNLOADING'] = True
 		if opt in ('-d'):
 			server['dbs'] = arg
 		if opt in ('-r'):
