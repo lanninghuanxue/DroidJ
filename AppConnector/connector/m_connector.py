@@ -4,6 +4,7 @@ sys.path.append('..')
 import redis
 from bson.objectid import ObjectId
 from pymongo import MongoClient
+import time
 
 import tasks as wker
 
@@ -22,9 +23,19 @@ def run_connecting(server, markets):
 	load_meta_into_redis(markets, redisCon, dbClient.appconnector)
 
 	#iter
+	result = {}
 	for item in redisCon.scan_iter(match= 'meta*'):
 		if redisCon.exists('cache:%s' % str(item[2])) == True:
 			continue
 
-		wker.run_connector.delay(item)
+		result[item[2]] = wker.run_connector.delay(item)
+
+	while len(result) != 0:
+		time.sleep(60)
+		
+		for oid in result:
+			if result[oid].ready() == True:
+				del result[oid]
+
+
 

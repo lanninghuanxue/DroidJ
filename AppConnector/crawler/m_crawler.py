@@ -24,13 +24,13 @@ def run_op(server, markets, op, interval):
 
 def run_listing(server, markets):
 	print 'listing'
-	run_op(server, markets, 'list', 60 * 10)
+	run_op(server, markets, 'list', 60 * 3)
 
 def run_metaing(server, markets):
 	print 'metaing'
-	run_op(server, markets, 'meta', 60 * 10)
+	run_op(server, markets, 'meta', 60 * 3)
 
 def run_downing(server,markets):
 	print 'downing'
-	run_op(server, markets, 'down', 60 * 10)
+	run_op(server, markets, 'down', 60 * 3)
 

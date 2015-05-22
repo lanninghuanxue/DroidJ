@@ -1,6 +1,7 @@
 from pymongo import MongoClient
 from bson.objectid import ObjectId
 from multiprocessing import Queue, Lock
+from Queue import Empty
 
 def do_preprocess(inRtopQueue, inRtopLock, inPtodQueue, inPtodLock, toExit, server):
 	rtopQueue = inRtopQueue
@@ -19,5 +20,5 @@ def do_preprocess(inRtopQueue, inRtopLock, inPtodQueue, inPtodLock, toExit, serv
 			ptodLock.acquire()
 			ptodQueue.put(item)
 			ptodLock.release()
-		except Queue.Empty:
+		except Empty:
 			continue
