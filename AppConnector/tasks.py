@@ -9,12 +9,36 @@ from bson.objectid import ObjectId
 import downloader.w_downloader as dler
 import connector.w_connector as ctor
 
-workerApp = Celery('tasks', backend= 'amqp://mqs/', broker= 'amqp://mqs/')
+#load server conf
+server = {}
+server['dbs'] = 'dbs'
+server['mqs'] = 'mqs'
+server['rds'] = 'rds'
 
-workerDb = MongoClient(host= 'dbs')
+fileHandle = open('tasks.conf')
+tmpLine = None
+for line in fileHandle:
+	while True:
+		if line[-1] == '\n' or line[-1] == '\r':
+			tmpLine = line[:-1]
+			line = tmpLine
+			continue
+		break
+
+	inData = line.split('=')
+	server[inData[0]] = inData[1]
+fileHandle.close()
+
+for d in server:
+	print d, server[d]
+#end
+
+workerApp = Celery('tasks', backend= 'amqp://%s/' % server['mqs'], broker= 'amqp://%s/' % server['mqs'])
+
+workerDb = MongoClient(host= server['dbs'])
 workerFs = gridfs.GridFS(workerDb.appconnector)
 
-workerRedis = redis.StrictRedis(host= 'rds', port= 6379, db= 0)
+workerRedis = redis.StrictRedis(host= server['rds'], port= 6379, db= 0)
 
 @workerApp.task
 def run_crawler(spiderName, spiderMode):

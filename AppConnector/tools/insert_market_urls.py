@@ -5,11 +5,12 @@ import getopt
 from pymongo import MongoClient
 
 if __name__ == '__main__':
-	opts, args = getopt.getopt(sys.argv[1:], 'cif:')
+	opts, args = getopt.getopt(sys.argv[1:], 'cif:d:')
 
 	doClear = False
 	doInsert = False
 	dataFile = None
+	dbs = 'dbs'
 
 	for opt, arg in opts:
 		if opt in ('-c'):
@@ -18,12 +19,14 @@ if __name__ == '__main__':
 			doInsert = True
 		if opt in ('-f'):
 			dataFile = arg
+		if opt in ('-d'):
+			dbs = arg
 
 	if doInsert == True and dataFile == None:
 		print '[ERROR]: NO DATAFILE'
 		sys.exit(1)
 
-	client = MongoClient(host = 'dbs')
+	client = MongoClient(host = dbs)
 	db = client.appconnector
 	initItems = db.inititems
 

@@ -2,13 +2,13 @@ from pymongo import MongoClient
 from bson.objectid import ObjectId
 from multiprocessing import Queue, Lock
 
-def do_preprocess(inRtopQueue, inRtopLock, inPtodQueue, inPtodLock, toExit):
+def do_preprocess(inRtopQueue, inRtopLock, inPtodQueue, inPtodLock, toExit, server):
 	rtopQueue = inRtopQueue
 	rtopLock = inRtopLock
 	ptodQueue = inPtodQueue
 	ptodLock = inPtodLock
 
-	client = MongoClient(host = 'dbs')
+	client = MongoClient(host = server['dbs'])
 	db = client.appconnector
 	metaItems = db.metaitems
 

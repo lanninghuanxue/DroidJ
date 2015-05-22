@@ -4,7 +4,7 @@ sys.path.append('..')
 import tasks as wker
 import time
 
-def run_op(markets, op, interval):
+def run_op(server, markets, op, interval):
 	result = {}
 
 	for market in markets:
@@ -22,15 +22,15 @@ def run_op(markets, op, interval):
 			break
 		counter = 0
 
-def run_listing(markets):
+def run_listing(server, markets):
 	print 'listing'
-	run_op(markets, 'list', 60 * 10)
+	run_op(server, markets, 'list', 60 * 10)
 
-def run_metaing(markets):
+def run_metaing(server, markets):
 	print 'metaing'
-	run_op(markets, 'meta', 60 * 10)
+	run_op(server, markets, 'meta', 60 * 10)
 
-def run_downing(markets):
+def run_downing(server,markets):
 	print 'downing'
-	run_op(markets, 'down', 60 * 10)
+	run_op(server, markets, 'down', 60 * 10)
 

@@ -18,7 +18,7 @@ def do_recv(rmChannel, method, properties, body):
 	if toExit == True:
 		rmChannel.stop_consuming()
 
-def do_receive(inRtopQueue, inRtopLock, inToExit):
+def do_receive(inRtopQueue, inRtopLock, inToExit, server):
 	global rtopQueue
 	global rtopLock
 	global toExit
@@ -28,7 +28,7 @@ def do_receive(inRtopQueue, inRtopLock, inToExit):
 	rtopLock = inRtopLock
 	toExit = inToExit
 
-	rmCon = pika.BlockingConnection(pika.ConnectionParameters(host = 'mqs'))
+	rmCon = pika.BlockingConnection(pika.ConnectionParameters(host = server['mqs']))
 	rmChannel = rmCon.channel()
 	rmChannel.queue_declare(queue = 'ctod')
 

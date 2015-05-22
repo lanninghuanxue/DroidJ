@@ -9,7 +9,7 @@ from m_preprocessor import do_preprocess
 from m_ddownloader import do_download
 from crawler.m_crawler import run_downing
 
-def run_downloading(markets):
+def run_downloading(server, markets):
 	print 'downloading'
 	rtopQueue = Queue()
 	rtopLock = Lock()
@@ -20,15 +20,15 @@ def run_downloading(markets):
 
 	toExit = False
 
-	receiverPs = Process(target = do_receive, args = (rtopQueue, rtopLock, toExit))
-	preprocessorPs = Process(target = do_preprocess, args = (rtopQueue, rtopLock, ptodQueue, ptodLock, toExit))
-	downloaderPs = Process(target = do_download, args = (ptodQueue, ptodLock, toExit))
+	receiverPs = Process(target = do_receive, args = (rtopQueue, rtopLock, toExit, server))
+	preprocessorPs = Process(target = do_preprocess, args = (rtopQueue, rtopLock, ptodQueue, ptodLock, toExit, server))
+	downloaderPs = Process(target = do_download, args = (ptodQueue, ptodLock, toExit, server))
 
 	downloaderPs.start()
 	preprocessorPs.start()
 	receiverPs.start()
 
-	run_downing(markets)
+	run_downing(server, markets)
 
 	#to exit
 	time.sleep(60 * 5)

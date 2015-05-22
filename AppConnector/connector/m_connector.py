@@ -14,11 +14,11 @@ def load_meta_into_redis(markets, redisCon, dbCon):
 		for item in metaItems.find({'market': market}, {'title': 1}):
 			redisCon.set('meta:%s' % str(item['_id']), (market, item['title'], item['_id']))
 
-def run_connecting(markets):
+def run_connecting(server, markets):
 	print 'connecting'
-	dbClient = MongoClient(host= 'dbs')
+	dbClient = MongoClient(host= server['dbs'])
 
-	redisCon = redis.StrictRedis(host= 'rds', port= 6379, db= 0)
+	redisCon = redis.StrictRedis(host= server['rds'], port= 6379, db= 0)
 	load_meta_into_redis(markets, redisCon, dbClient.appconnector)
 
 	#iter
