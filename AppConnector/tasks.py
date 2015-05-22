@@ -78,9 +78,9 @@ def run_connector(item):
 		if ctor.do_connect(item, objItem) == False:
 			continue
 
+		print objItem[0], objItem[2]
 		itemList[objItem[2]] = objItem[0]
 
-	print itemList
 	if len(itemList) == 1:
 		return False
 

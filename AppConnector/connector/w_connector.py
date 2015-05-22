@@ -1,6 +1,4 @@
 def do_connect(item, objItem):
-	print item
-	print objItem
 	if item[2] == objItem[2]:
 		return False
 
