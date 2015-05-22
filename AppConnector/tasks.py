@@ -28,9 +28,6 @@ for line in fileHandle:
 	inData = line.split('=')
 	server[inData[0]] = inData[1]
 fileHandle.close()
-
-for d in server:
-	print d, server[d]
 #end
 
 workerApp = Celery('tasks', backend= 'amqp://%s/' % server['mqs'], broker= 'amqp://%s/' % server['mqs'])
