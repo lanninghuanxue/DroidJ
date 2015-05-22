@@ -5,6 +5,7 @@ import redis
 from pymongo import MongoClient
 import gridfs
 from bson.objectid import ObjectId
+import json
 
 import downloader.w_downloader as dler
 import connector.w_connector as ctor
@@ -74,7 +75,7 @@ def run_connector(item):
 	itemList = {}
 	itemList[item[2]] = item[0]
 	for index in workerRedis.scan_iter(match= 'meta*'):
-		objItem = workerRedis.get(index)
+		objItem = json.loads(workerRedis.get(index))
 		if ctor.do_connect(item, objItem) == False:
 			continue
 
