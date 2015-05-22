@@ -74,7 +74,8 @@ def run_connector(item):
 
 	itemList = {}
 	itemList[item[2]] = item[0]
-	for objItem in workerRedis.scan_iter(match= 'meta*'):
+	for index in workerRedis.scan_iter(match= 'meta*'):
+		objItem = workerRedis.get(index)
 		if ctor.do_connect(item, objItem) == False:
 			continue
 
