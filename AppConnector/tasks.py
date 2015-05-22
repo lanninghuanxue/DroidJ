@@ -86,11 +86,11 @@ def run_connector(item):
 		return False
 
 	for oid in itemList:
-		if workerRedis.exists('cache:%s' % str(oid)) == True:
+		if workerRedis.exists('cache:%s' % oid) == True:
 			return False
 
 	for oid in itemList:
-		workerRedis.set('cache:%s' % str(oid), 1)
+		workerRedis.set('cache:%s' % oid, 1)
 
 	workerDb.appconnector.downitems.insert(itemList)
 	return True
